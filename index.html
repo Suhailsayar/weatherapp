@@ -3,52 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <title>Weather App</title>
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <h1>Weather App</h1>
-      <p>
-        Enter a location below to get the current weather conditions for that
-        location.
-      </p>
-    </header>
-    <!-- main content -->
-    <main>
-      <!-- search box -->
-      <section class="search-box">
-        <input type="text" id="location-input" placeholder="Enter Location" />
-
-        <button id="search-button">Search</button>
-      </section>
-      <!-- errror /loading -->
-      <div id="loading" style="display: none">Loading...</div>
-      <div id="error" style="display: none">Error loading weather data</div>
-      <!-- weather content -->
-      <section
-        class="weather-display"
-        id="weather-display"
-        style="display: none"
-      >
-        <div class="temp-display"><span id="temperature">--</span> °C</div>
-        <div class="condition-display">
-          <span id="condition">--</span>
+    <main class="app-shell">
+      <section class="weather-panel" aria-labelledby="app-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Live weather lookup</p>
+          <h1 id="app-title">Weather App</h1>
+          <p class="intro">
+            Search any city and get a clean snapshot of the current conditions.
+          </p>
         </div>
 
-        <!-- condition info -->
-        <div class="condition-info">
-          <span id="wind-speed">Wind Speed: --</span>
-          <span id="humidity">Humidity: --</span>
+        <form class="search-box" id="search-form">
+          <label class="sr-only" for="location-input">Location</label>
+          <input
+            type="text"
+            id="location-input"
+            name="location"
+            placeholder="Search city, e.g. London"
+            autocomplete="off"
+          />
+          <button id="search-button" type="submit">Search</button>
+        </form>
+
+        <div class="status-message" id="loading" style="display: none">
+          Loading weather...
         </div>
+        <div
+          class="status-message error-message"
+          id="error"
+          role="alert"
+          style="display: none"
+        >
+          Error loading weather data
+        </div>
+
+        <section
+          class="weather-display"
+          id="weather-display"
+          aria-live="polite"
+          style="display: none"
+        >
+          <div class="weather-main">
+            <div>
+              <p class="location-name" id="location-name">--</p>
+              <p class="condition-display" id="condition">--</p>
+            </div>
+            <div class="temp-display"><span id="temperature">--</span> C</div>
+          </div>
+
+          <div class="condition-info">
+            <article>
+              <span>Wind</span>
+              <strong id="wind-speed">--</strong>
+            </article>
+            <article>
+              <span>Humidity</span>
+              <strong id="humidity">--</strong>
+            </article>
+            <article>
+              <span>Feels like</span>
+              <strong id="feels-like">--</strong>
+            </article>
+          </div>
+        </section>
       </section>
+
+      <footer>
+        <p>Made by Suhail Sayar</p>
+      </footer>
     </main>
-    <!-- footer -->
-    <footer>
-      <p>Made by Suhail Sayar</p>
-    </footer>
-    <!-- js goes here -->
+
     <script src="script.js"></script>
   </body>
 </html>
